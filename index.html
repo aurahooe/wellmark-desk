@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Wellmark</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+  <header class="mast">
+    <a class="wordmark" href="/">Wellmark</a>
+    <p class="mast-line">A public desk. Reprinted on the hour.</p>
+    <nav class="mast-nav">
+      <button type="button" data-go="desk">The hour</button>
+      <button type="button" data-go="board">Public marks</button>
+      <button type="button" data-go="studio" class="need-auth hidden">Your desk</button>
+      <button type="button" id="auth-btn">Sign in</button>
+    </nav>
+  </header>
+  <main>
+    <section id="view-desk" class="view">
+      <article class="edition" id="edition">
+        <p class="kicker" id="ed-kicker">Loading the hour…</p>
+        <h1 id="ed-headline"></h1>
+        <p class="lede" id="ed-body"></p>
+        <p class="meta" id="ed-meta"></p>
+      </article>
+      <aside class="rail">
+        <h2>Earlier hours</h2>
+        <ol id="hour-list" class="hour-list"></ol>
+      </aside>
+    </section>
+    <section id="view-board" class="view hidden">
+      <header class="section-head">
+        <h1>Marks left on the desk</h1>
+        <p>Anything a member marks public appears here. Private drafts stay in their studio.</p>
+      </header>
+      <div id="public-marks" class="cards"></div>
+    </section>
+    <section id="view-studio" class="view hidden">
+      <header class="section-head">
+        <h1>Your desk</h1>
+        <p id="studio-who"></p>
+      </header>
+      <form id="mark-form" class="composer">
+        <label>Title
+          <input name="title" maxlength="140" required placeholder="A short heading" />
+        </label>
+        <label>The mark
+          <textarea name="body" maxlength="6000" required rows="8" placeholder="Write something you would leave on a shared desk."></textarea>
+        </label>
+        <label class="check">
+          <input type="checkbox" name="is_public" />
+          Mark as public — it will show on the board
+        </label>
+        <button type="submit">Save mark</button>
+      </form>
+      <div id="my-marks" class="cards"></div>
+    </section>
+  </main>
+  <dialog id="auth-dialog">
+    <form id="auth-form" method="dialog">
+      <h2 id="auth-title">Sign in</h2>
+      <p class="hint">Magic link. Check your inbox after you send.</p>
+      <label>Email
+        <input type="email" name="email" required autocomplete="email" />
+      </label>
+      <div class="row">
+        <button type="submit">Send link</button>
+        <button type="button" id="auth-close" value="cancel">Close</button>
+      </div>
+      <p id="auth-msg" class="hint"></p>
+    </form>
+  </dialog>
+  <footer>
+    <span>Wellmark</span>
+    <span id="clock"></span>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="./app.js"></script>
+</body>
+</html>

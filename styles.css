@@ -1,0 +1,141 @@
+:root {
+  --ink: #1c1712;
+  --paper: #f3ead8;
+  --rule: #c9b99a;
+  --accent: #8a3b22;
+  --muted: #6d6254;
+  --card: #faf4e8;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; min-height: 100%; }
+body {
+  font-family: "Source Sans 3", system-ui, sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.55;
+}
+.grain {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  opacity: 0.18;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+  z-index: 0;
+}
+.mast, main, footer { position: relative; z-index: 1; }
+.mast {
+  padding: 2.4rem 6vw 1.2rem;
+  border-bottom: 1px solid var(--rule);
+  display: grid;
+  gap: 0.35rem;
+  animation: rise 0.8s ease both;
+}
+.wordmark {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-size: 2.6rem;
+  color: var(--ink);
+  text-decoration: none;
+  letter-spacing: -0.02em;
+}
+.mast-line { margin: 0; color: var(--muted); font-size: 0.95rem; }
+.mast-nav { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.8rem; }
+.mast-nav button, .composer button, dialog button {
+  font: inherit;
+  background: transparent;
+  border: 1px solid var(--ink);
+  color: var(--ink);
+  padding: 0.35rem 0.75rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+}
+.mast-nav button:hover, .composer button:hover, dialog button:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+main { padding: 2rem 6vw 5rem; max-width: 1120px; }
+.view { animation: rise 0.55s ease both; }
+.hidden { display: none !important; }
+#view-desk {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(220px, 0.7fr);
+  gap: 3rem;
+}
+@media (max-width: 780px) {
+  #view-desk { grid-template-columns: 1fr; }
+}
+.kicker {
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.72rem;
+  color: var(--accent);
+  margin: 0 0 0.6rem;
+}
+.edition h1 {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-size: clamp(2.1rem, 5vw, 3.6rem);
+  font-weight: 400;
+  line-height: 1.08;
+  margin: 0 0 1rem;
+}
+.lede { font-size: 1.15rem; max-width: 42rem; }
+.meta { color: var(--muted); font-size: 0.9rem; }
+.hour-list { list-style: none; padding: 0; margin: 0; }
+.hour-list li { border-top: 1px solid var(--rule); padding: 0.7rem 0; animation: rise 0.5s ease both; }
+.hour-list button { all: unset; cursor: pointer; display: block; }
+.hour-list strong { display: block; font-weight: 600; }
+.hour-list span { color: var(--muted); font-size: 0.85rem; }
+.section-head h1 {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-weight: 400;
+  font-size: 2.2rem;
+  margin: 0 0 0.4rem;
+}
+.cards { display: grid; gap: 1rem; margin-top: 1.4rem; }
+.card {
+  background: var(--card);
+  border: 1px solid var(--rule);
+  padding: 1.1rem 1.2rem;
+  animation: rise 0.5s ease both;
+}
+.card h3 {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-weight: 400;
+  margin: 0 0 0.4rem;
+  font-size: 1.45rem;
+}
+.card p { margin: 0.3rem 0; white-space: pre-wrap; }
+.card .who { color: var(--muted); font-size: 0.85rem; }
+.card .actions { margin-top: 0.7rem; display: flex; gap: 0.4rem; }
+.card .actions button { font: inherit; border: 1px solid var(--rule); background: transparent; padding: 0.2rem 0.55rem; cursor: pointer; }
+.composer { display: grid; gap: 0.8rem; max-width: 40rem; margin-top: 1rem; }
+.composer label, dialog label { display: grid; gap: 0.3rem; font-size: 0.92rem; }
+.composer input, .composer textarea, dialog input {
+  font: inherit;
+  border: 1px solid var(--rule);
+  background: #fffdf7;
+  padding: 0.5rem 0.6rem;
+  color: var(--ink);
+}
+.check { display: flex !important; align-items: center; gap: 0.5rem; grid-template-columns: none; }
+.check input { width: auto; }
+dialog {
+  border: 1px solid var(--ink);
+  background: var(--paper);
+  padding: 1.4rem;
+  width: min(420px, 92vw);
+}
+dialog::backdrop { background: rgba(28, 23, 18, 0.35); }
+.row { display: flex; gap: 0.5rem; margin-top: 0.6rem; }
+.hint { color: var(--muted); font-size: 0.88rem; }
+footer {
+  border-top: 1px solid var(--rule);
+  padding: 1rem 6vw;
+  display: flex;
+  justify-content: space-between;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+@keyframes rise {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
